@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SVG Animations</title>
+    <link rel="stylesheet" href="main/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie.min.js" integrity="sha256-Z6O4M7tqzCtU4AEYZT3+moexyqFde5vZNka/gcaixa0=" crossorigin="anonymous"></script></head>
+<body>
+    <div class="container">
+        <div class="bm" data-file="clipboard"></div>
+        <div class="bm" data-file="wait"></div>
+        <div class="bm" data-file="cloud"></div>
+    </div>
+</body>
+</html>
+<script>
+    var bm = document.getElementsByClassName('bm');
+    Array.prototype.forEach.call(bm, icon => {
+        var anim = bodymovin.loadAnimation({
+            container: icon, 
+            path: `Icons/${icon.dataset.file}.json`,
+            renderer: 'canvas',
+            loop: false, 
+            autoplay: false
+        });
+        icon.addEventListener('mouseenter', () => {
+            anim.setDirection(1)
+            anim.play();
+        });
+        icon.addEventListener('mouseleave', () => {
+            anim.setDirection(-1)
+            anim.play();
+        });
+    })
+</script>
